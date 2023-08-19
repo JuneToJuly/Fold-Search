@@ -1,0 +1,95 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>thomas.gian.FoldSearch</id>
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>FoldSearch</name>
+
+    <description>
+
+        <![CDATA[
+        <body>
+        <p>
+        Innovative search method built on code folding (hiding). Search for a method, class, variable, etc. by folding
+        all code that doesn't contain the search term. This allows you to quickly find and
+        see the total and spatial characteristics of the code you are looking for.
+        </p>
+        <p>
+        Search a variable's name and quickly see all the places it is used. Search a method's name and see all variables
+        invoking it.
+        </p>
+        <ul>
+        <li>Fold search across your whole file or in within methods.</li>
+        <li>Filter by a mutation or access during your search! <q>Where is this variable being used?</q></li>
+        <li>Search for a line with multiple terms! Search <i>print</i> and <i><variable></i> results in a print statement with that variable if it exist.</li>
+        <li>Start a search at your cursor.</li>
+        <li>Start a search in a method at your cursor</li>
+        <li>Search across a window size starting at 5 lines. If you know you concepts should be together but not on same line, this is the search for you.</li>
+        <li>Search</li>
+        </ul>
+        Please check out the <a href="https://ian-21.gitbook.io/ian-thomas-plugins/">User's Guide</a> to learn more about how to use this plugin!<br>
+        <image src="https://1622246627-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F1mIJEEUDbuBxVXc1kutf%2Fuploads%2FyQCQfvmqvSBJ2F86NQYZ%2FFold_Search_%E2%80%93_JavaPsi_java__Fold_Search_main__2022-09-17_13-13-26_AdobeExpress.gif?alt=media&token=f14bb31f-869c-4368-9274-acb526d92ac3"/>
+        <br>
+        <image border="0" width="720" src="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F1mIJEEUDbuBxVXc1kutf%2Fuploads%2FFIR61k6vNX5nIbegAlK6%2Fimage.png?alt=media&token=670fc8d2-6cc6-455a-bb75-578e990092fa"/>
+        <br>
+        <image border="0" width="720" src="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F1mIJEEUDbuBxVXc1kutf%2Fuploads%2FNG8TeogU4MPlCjFcvnVL%2Fimage.png?alt=media&token=967c31c4-caee-4de2-9787-2e0eaebe4005"/>
+        </body>
+        ]]>
+
+    </description>
+
+    <!-- A displayed Vendorjava-capable name or Organization ID displayed on the Plugins Page. -->
+    <vendor>Ian Thomas</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <actions>
+<!--    <action id="come.example.kontext" class="june.to.july.Kontext" text="Kontext"-->
+<!--            description="Action to provide context based on cursor location.">-->
+<!--    <add-to-group group-id="ToolsMenu" anchor="first"/>-->
+<!--    <keyboard-shortcut keymap="$default" first-keystroke="alt"/>-->
+<!--    </action>-->
+        <action id="thomas.gian.CleanJava" class="thomas.gian.CleanJava" text="CleanJava"
+                description="Action to provide context based on cursor location.">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+        <action id="thomas.gian.FoldSearch" class="thomas.gian.FoldSearch" text="Fold Search"
+                description="Action spawns a search box to do a standard fold search.">
+        </action>
+        <action id="thomas.gian.FoldSearchMutator" class="thomas.gian.FoldSearchMutator" text="Fold Search Mutator"
+                description="Action spawns a search box to do a fold search on lines where the phrase contains mutations. (Java Only)">
+        </action>
+        <action id="thomas.gian.FoldSearchAccessor" class="thomas.gian.FoldSearchAccessor" text="Fold Search Accessor"
+                description="Action spawns a search box to do a fold search on lines where the phrase contains accesses. (Java Only)">
+        </action>
+        <action id="thomas.gian.FoldSearchCursor" class="thomas.gian.FoldSearchCursor" text="Fold Search Cursor"
+                description="Action preforms a fold search at cursor.">
+        </action>
+        <action id="thomas.gian.FoldSearchCursorMethod" class="thomas.gian.FoldSearchCursorMethod" text="Fold Search Cursor Method"
+                description="Action preforms a fold search at the cursor only for lines in the current method. (Java Only)">
+        </action>
+        <action id="thomas.gian.FoldSearchMethod" class="thomas.gian.FoldSearchMethod" text="Fold Search Method"
+                description="Action spawns a search box to do a fold search only for lines in the current method. (Java Only)">
+        </action>
+        <action id="thomas.gian.WideScreen" class="thomas.gian.WideScreen" text="WideScreen"
+                description="Take the current editor into widescreen mode.">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+        <action id="thomas.gian.WindowSearch" class="thomas.gian.WindowSearch" text="Window Search"
+                description="Action spawns a search box for a window search. The window search looks at chunks of
+                5 lines, if a line is found, display.">
+        </action>
+    </actions>
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow factoryClass="thomas.gian.VarShowFactory" id="june.to.july.VarShower" />
+        <lang.foldingBuilder
+                language="JAVA"
+                implementationClass="thomas.gian.NewFoldingBuilder"/>
+        <lang.foldingBuilder
+                language="JAVA"
+                implementationClass="thomas.gian.CleanUpFoldingBuilder"/>
+    </extensions>
+</idea-plugin>

@@ -1,0 +1,125 @@
+<idea-plugin>
+    <id>thomas.gian.FoldSearch</id>
+    <name>FoldSearch</name>
+
+    <description>
+
+        <![CDATA[
+        <p>
+        <p>An example of fold search in action:<br>
+            <image src="https://1622246627-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F1mIJEEUDbuBxVXc1kutf%2Fuploads%2FyQCQfvmqvSBJ2F86NQYZ%2FFold_Search_%E2%80%93_JavaPsi_java__Fold_Search_main__2022-09-17_13-13-26_AdobeExpress.gif?alt=media&token=f14bb31f-869c-4368-9274-acb526d92ac3"/>
+        </p>
+        Innovative search method built on code folding (hiding). Search for a method, class, variable, etc. by folding
+        all code that doesn't contain the search term(s). This allows you to see the totality of your search whilst
+        remaining in your editor! Gain a new perspective on your code by seeing how values are used and methods are called without having to cycle
+        through the full file.
+        </p>
+        <p>
+        WARNING! You may never be able to develop with a standard search method again...
+        </p>
+        <ul>
+        <li>Search for a line with multiple terms! Search <i>print</i> and <i>my_variable</i> results in a print statement with that variable if it exist.</li>
+        <li>Fold search across your whole file or in within methods (Java Only).</li>
+        <li>Filter by a mutation or access during your search! <i>Where is this value being "accessed"?</i> <i>What statements modify this value?</i></li>
+        <li>Start a search at your cursor to quickly hide all lines not containing that code element!</li>
+        <li>Search across your file using a new technique called <i>Window Search</i>. If you know some concepts should be grouped together spatially but not on same line, this is the search for you.</li>
+        <li>Search across your file using a new technique called <i>Block Search</i>. Find Blocks of code that contain particular search terms.</li>
+        <li>and much more!</li>
+        </ul>
+        Please check out the <a href="https://ian-21.gitbook.io/ian-thomas-plugins/">User's Guide</a> to learn more about how to use this plugin! It will change the way you code!
+        <br>
+        You can also find the quick video tutorial <a href="https://www.youtube.com/watch?v=uV0oW-Qr-Zw">here</a>.
+        <br>
+        ]]>
+
+    </description>
+
+    <vendor url="https://ian-21.gitbook.io/ian-thomas-plugins/">Ian Thomas</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends optional="true" config-file="plugin_java.xml">com.intellij.modules.java</depends>
+    <change-notes>
+        <![CDATA[
+    <h2>New Features</h2>
+    <ul>
+      <li>Fold Search Last: For those situations where you need to narrow down a search further but already exited. Simply pull it back up and continue appending.</li>
+      <li>Fold Search Toggle Case Sensitive: Toggle case sensitivity after exiting the last fold search.</li>
+    </ul>
+    <h2>UI Changes</h2>
+    <ul>
+      <li>Made all of the UI popups alpha (0.1) so you can see what is in the editor. This was blocking text which sometimes caused spelling issues.</li>
+    </ul>
+    ]]>
+    </change-notes>
+
+    <actions>
+        <action id="thomas.gian.FoldSearch" class="thomas.gian.FoldSearch" text="Fold Search"
+                description="Action spawns a search box to do a standard fold search.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchPrevious" class="thomas.gian.FoldSearchPrevious" text="Fold Search Previous"
+                description="Goes to the previous fold search.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchForward" class="thomas.gian.FoldSearchForward" text="Fold Search Forward"
+                description="Goes to the next fold search if FoldSearchPrevious has been used.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchCursor" class="thomas.gian.FoldSearchCursor" text="Fold Search Cursor"
+                description="Performs a fold search at cursor.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchOrAtCursor" class="thomas.gian.FoldSearchOrAtCursor"
+                text="Fold Search Or Cursor"
+                description="Performs a fold search OR at cursor with current search.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchAndAtCursor" class="thomas.gian.FoldSearchAndAtCursor"
+                text="Fold Search And Cursor"
+                description="Performs a fold search AND at cursor with current search.">
+        </action>
+
+        <action id="thomas.gian.WindowSearch" class="thomas.gian.WindowSearch" text="Window Search"
+                description="Spawns a search box for a window search. The window search looks at chunks of
+                5 lines, if all the search terms exist, displays that chunk.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchFrameAsWindow" class="thomas.gian.FoldSearchFrameAsWindow"
+                text="Window Search (Frame)"
+                description="Frames the current search as a Window Search.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchToggleCaseSensitive" class="thomas.gian.FoldSearchToggleCaseSensitive"
+                text="Fold Case Sensitive Search (Frame)"
+                description="Frames the current search as a case sensitive search.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchToggle" class="thomas.gian.FoldSearchToggle" text="Fold Search Toggle"
+                description="Toggles the current fold search on and off revealing the rest of the file.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchLast" class="thomas.gian.FoldSearchLast" text="Fold Search Last"
+                description="Shows the last closed fold search and allows you to modify it.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchToggleComments" class="thomas.gian.FoldSearchToggleComments"
+                text="FoldSearch Toggle Comments"
+                description="Toggles comments to be searched. If this is toggled on, comments will not appear in searches. (Java Only)">
+        </action>
+
+        <action id="thomas.gian.exile.ExileAdd" class="thomas.gian.exile.ExileAdd" text="Exile Add"
+                description="Exile a line from the file. This line will not appear in searches and is not displayed.">
+        </action>
+
+        <action class="thomas.gian.exile.ExileClear" id="thomas.gian.exile.ExileClear" text="Exile Clear"
+                description="Clear the exiles from file.">
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow factoryClass="thomas.gian.FoldSearchHistoryFactory" id="FoldSearchHistory"/>
+        <applicationService serviceImplementation="thomas.gian.exile.ExileState"/>
+        <applicationService serviceImplementation="thomas.gian.FoldSearchState"/>
+    </extensions>
+</idea-plugin>

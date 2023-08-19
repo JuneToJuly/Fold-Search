@@ -1,0 +1,35 @@
+<idea-plugin>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <actions>
+        <action id="thomas.gian.FoldSearchMutator" class="thomas.gian.FoldSearchMutator" text="Fold Search Mutator"
+                description="Action spawns a search box performing a fold search on lines where the phrase contains mutations or methods. (Java Only)">
+        </action>
+        <action id="thomas.gian.FoldSearchAccessor" class="thomas.gian.FoldSearchAccessor" text="Fold Search Accessor"
+                description="Action spawns a search box performing a fold search on lines where the phrase contains accesses. (Java Only)">
+        </action>
+
+        <action id="thomas.gian.FoldSearchFrameAsBlock" class="thomas.gian.FoldSearchFrameAsBlock" text="Fold Search Block (Frame)"
+                description="Frames the current fold search as a block search.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchFrameAsMutator" class="thomas.gian.FoldSearchFrameAsMutator" text="Fold Search Mutator (Frame)"
+                description="Frames the current fold search as a mutator search.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchFrameAsAccessor" class="thomas.gian.FoldSearchFrameAsAccessor" text="Fold Search Accessor(Frame)"
+                description="Frames the current fold search as an access search.">
+        </action>
+
+        <action id="thomas.gian.FoldSearchToggleMethodScoping" class="thomas.gian.FoldSearchToggleMethodScoping" text="FoldSearch Toggle Method Scoping"
+                description="Toggles method scoping for the all fold search methods. Search will be limited to the current method cursor is in.">
+        </action>
+
+        <action id="thomas.gian.BlockSearch" class="thomas.gian.BlockSearch" text="Block Search"
+                description="Action spawns a search box for a block search. The block search looks at all block chunks.">
+        </action>
+    </actions>
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow factoryClass="thomas.gian.VarShowFactory" id="VarViewer"/>
+    </extensions>
+</idea-plugin>

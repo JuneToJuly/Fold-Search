@@ -1,0 +1,47 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>june.to.july.MaintainerToolkit</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>MaintainerToolkit</name>
+
+    <!-- A displayed Vendorjava-capable name or Organization ID displayed on the Plugins Page. -->
+    <vendor></vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <actions>
+<!--    <action id="come.example.kontext" class="june.to.july.Kontext" text="Kontext"-->
+<!--            description="Action to provide context based on cursor location.">-->
+<!--    <add-to-group group-id="ToolsMenu" anchor="first"/>-->
+<!--    <keyboard-shortcut keymap="$default" first-keystroke="alt"/>-->
+<!--    </action>-->
+        <action id="june.to.july.CleanJava" class="june.to.july.CleanJava" text="CleanJava"
+                description="Action to provide context based on cursor location.">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+
+        <action id="june.to.july.SearchResultSearch" class="june.to.july.SearchResultSearch" text="SRS"
+                description="Action to provide context based on cursor location.">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+    </actions>
+    <extensions defaultExtensionNs="com.intellij">
+<!--        <lang.foldingBuilder-->
+<!--                language="JAVA"-->
+<!--                implementationClass="com.example.where.MethodFoldingBuilder"/>-->
+        <lang.foldingBuilder
+                language="JAVA"
+                implementationClass="june.to.july.NewFoldingBuilder"/>
+        <lang.foldingBuilder
+                language="JAVA"
+                implementationClass="june.to.july.CleanUpFoldingBuilder"/>
+<!--        <lang.foldingBuilder-->
+<!--                language="JAVA"-->
+<!--                implementationClass="june.to.july.SrsFoldingBuilder"/>-->
+    </extensions>
+</idea-plugin>
